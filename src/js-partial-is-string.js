@@ -40,6 +40,8 @@
      * Determines whether an object is a string.
      * Handles object wrappers and fake strings (@@toStringTag).
      *
+     * @function isString
+     *
      * @param {*}            object                      - The object to check.
      * @param {boolean|null} [handleWrapperObject=false] - Handle object wrappers (e.g.: new String()).
      *                                                     If === true, it will return true for object wrappers
