@@ -1,0 +1,26 @@
+# IntelliJ project directory
+/.idea/
+
+# Vagrant VM directory
+/.vagrant/
+
+# coverage directory (for development)
+/cov/
+
+# scripts directory (for development)
+/scripts/
+
+# source directory (for development)
+/src/
+
+# tests directory (for development)
+/tests/
+
+.doclets.yml
+.editorconfig
+.eslintrc.js
+.gitattributes
+.npmignore
+.publish.json
+.travis.yml
+vagrantfile
