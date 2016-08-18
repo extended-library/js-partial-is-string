@@ -8,7 +8,7 @@
  * More information on [JavaScript Open Standards]{@link https://github.com/jsopenstd/jsopenstd}.
  *
  * @namespace js.partial
- * @version 0.0.1
+ * @version 0.0.2
  *
  * @author Richard King <richrdkng@gmail.com> [GitHub]{@link https://github.com/richrdkng}
  * @license [MIT]{@link https://github.com/jsopenstd/js-partial-foreach/blob/master/license.md}
@@ -46,31 +46,35 @@
      *                                                     for strings too.
      *                                                     Pass 'null' to skip the argument by leaving
      *                                                     with the default value.
-     * @param {boolean}      [handleToStringTag=false]   - Handle fake strings (check unit tests for example).
+     * @param {boolean}      [handleFakeString=false]    - Handle fake strings (check unit tests for examples).
      *                                                     If === true, it will return false for fake strings.
      *
      * @returns {boolean} If the object is string, it will be === true.
      */
-    return function isString(object, handleWrapperObject, handleToStringTag) {
+    return function isString(object, handleWrapperObject, handleFakeString) {
+
+        // handle @@toStringTag first (before regular check and handleWrapperObject)
+        // as it is possible to fake '[object String]'
+        if (handleFakeString) {
+
+            /* istanbul ignore else */
+            if (typeof Symbol === 'function' &&
+                typeof Symbol.toStringTag === 'symbol') {
+
+                if (Object.prototype.toString.call(object) === '[object String]') {
+                    try {
+                        String.prototype.valueOf.call(object);
+                        return true;
+
+                    } catch (e) {
+                        return false;
+                    }
+                }
+            }
+        }
 
         if (typeof object === 'string') {
             return true;
-        }
-
-        // handle @@toStringTag first (before handleWrapperObject) as it is possible to fake '[object String]'
-        if (handleToStringTag) {
-            if (typeof Symbol === 'function' &&
-                typeof Symbol.toStringTag === 'symbol' &&
-                Object.prototype.toString.call(object) === '[object String]') {
-
-                try {
-                    String.prototype.valueOf.call(object);
-                    return true;
-
-                } catch (e) {
-                    return false;
-                }
-            }
         }
 
         if (handleWrapperObject === true) {
