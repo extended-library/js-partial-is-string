@@ -41,6 +41,7 @@
      * Handles object wrappers and fake strings (@@toStringTag).
      *
      * @function isString
+     * @memberOf js.partial
      *
      * @param {*}            object                      - The object to check.
      * @param {boolean|null} [handleWrapperObject=false] - Handle object wrappers (e.g.: new String()).
