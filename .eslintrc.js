@@ -8,6 +8,8 @@ module.exports = {
         'require' : true,
         'console' : true,
 
+        'Symbol' : true,
+
         // typed arrays
         'Int8Array' : true,
         'Uint8Array' : true,
@@ -56,6 +58,7 @@ module.exports = {
         'prefer-spread' : 'off',
         'prefer-rest-params' : 'off',
         'no-invalid-this' : 'off',
+        'newline-before-return': 'off',
         'no-console': [
             'error', {
                 allow: [
@@ -93,7 +96,7 @@ module.exports = {
         'id-length': [
             'error', {
                 'exceptions': [
-                    'i', 'j', 'p', 'n', 'x', 'y', 'w', 'h'
+                    'i', 'j', 'p', 'n', 'x', 'y', 'w', 'e', 'h'
                 ]
             }
         ],

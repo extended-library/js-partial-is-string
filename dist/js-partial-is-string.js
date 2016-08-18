@@ -31,18 +31,52 @@
 
     // Browser
     } else {
-        root.js_partial_isPresent = factory();
+        root.js_partial_isString = factory();
     }
 }(this, function() {
     'use strict';
 
     /**
+     * Determines whether an object is a string.
+     * Handles object wrappers and fake strings (@@toStringTag).
      *
-     * @param {*} object A
+     * @param {*}            object                      - The object to check.
+     * @param {boolean|null} [handleWrapperObject=false] - Handle object wrappers (e.g.: new String()).
+     *                                                     If === true, it will return true for object wrappers
+     *                                                     for strings too.
+     *                                                     Pass 'null' to skip the argument by leaving
+     *                                                     with the default value.
+     * @param {boolean}      [handleToStringTag=false]   - Handle fake strings (check unit tests for example).
+     *                                                     If === true, it will return false for fake strings.
      *
-     * @returns {boolean} B
+     * @returns {boolean} If the object is string, it will be === true.
      */
-    return function isString(object) {
-        return typeof object === 'string';
+    return function isString(object, handleWrapperObject, handleToStringTag) {
+
+        if (typeof object === 'string') {
+            return true;
+        }
+
+        // handle @@toStringTag first (before handleWrapperObject) as it is possible to fake '[object String]'
+        if (handleToStringTag) {
+            if (typeof Symbol === 'function' &&
+                typeof Symbol.toStringTag === 'symbol' &&
+                Object.prototype.toString.call(object) === '[object String]') {
+
+                try {
+                    String.prototype.valueOf.call(object);
+                    return true;
+
+                } catch (e) {
+                    return false;
+                }
+            }
+        }
+
+        if (handleWrapperObject === true) {
+            return Object.prototype.toString.call(object) === '[object String]';
+        }
+
+        return false;
     };
 }));
