@@ -38,7 +38,7 @@
 
     /**
      * Determines whether an object is a string.
-     * Handles object wrappers and fake strings (@@toStringTag).
+     * Handles object wrappers and fake strings ([Symbol.toStringTag] = 'String').
      *
      * @function isString
      * @memberOf js.partial
