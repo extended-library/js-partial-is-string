@@ -1,6 +1,6 @@
 {
   "name": "js-partial-is-string",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A partial to check whether an object is a string.",
   "main": "dist/js-partial-is-string.js",
   "license": "MIT",

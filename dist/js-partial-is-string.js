@@ -8,7 +8,7 @@
  * More information on [JavaScript Open Standards]{@link https://github.com/jsopenstd/jsopenstd}.
  *
  * @namespace js.partial
- * @version 0.0.2
+ * @version 0.0.3
  *
  * @author Richard King <richrdkng@gmail.com> [GitHub]{@link https://github.com/richrdkng}
  * @license [MIT]{@link https://github.com/jsopenstd/js-partial-foreach/blob/master/license.md}
@@ -38,7 +38,10 @@
 
     /**
      * Determines whether an object is a string.
-     * Handles object wrappers and fake strings (@@toStringTag).
+     * Handles object wrappers and fake strings ([Symbol.toStringTag] = 'String').
+     *
+     * @function isString
+     * @memberOf js.partial
      *
      * @param {*}            object                      - The object to check.
      * @param {boolean|null} [handleWrapperObject=false] - Handle object wrappers (e.g.: new String()).
