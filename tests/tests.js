@@ -5,7 +5,7 @@ const assert   = require('assert'),
       isString = require(vars.path);
 
 module.exports = {
-    'js-partial-is-present' : () => {
+    'js-partial-is-string' : () => {
         let _undefined = undefined,
             _null      = null,
             _boolean   = false,
